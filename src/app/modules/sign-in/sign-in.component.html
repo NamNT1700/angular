@@ -1,0 +1,20 @@
+<!-- [formGroup]="signInForm" -->
+<!-- (ngSubmit)="onSubmit()" -->
+<div>
+
+    <div>
+        <span>Username</span>
+        <input (input)="onChangeName($event)" />
+    </div>
+
+    <div>
+        <span>Password</span>
+        <input [type]="'password'"
+            (input)="onChangePassword($event)"
+            [value]="password" />
+    </div>
+
+    <div>
+        <button (click)="onSubmit()">Sign in</button>
+    </div>
+</div>
