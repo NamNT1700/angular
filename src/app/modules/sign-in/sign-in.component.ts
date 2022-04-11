@@ -10,47 +10,37 @@ import { SignInService } from './sign-in.service';
 })
 export class SignInComponent implements OnInit {
     // @ViewChild('signInNgForm') signInForm: FormGroup ;
-    // signInForm: FormGroup;
-
-    username = '';
-    password = ''
+    signInForm: FormGroup;
 
     constructor(
-        // private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
         private _signInService: SignInService,
     ) {
-        // this.signInForm = this._formBuilder.group({
-        //     username: ['admin', [Validators.required]],
-        //     password: ['Namso1234567!', [Validators.required]]
-        // });
+        this.signInForm = this._formBuilder.group({
+            username: ['admin', [Validators.required]],
+            password: ['Namso1234567!', [Validators.required]]
+        });
     }
 
     ngOnInit(): void {
-        // this.signInForm = this._formBuilder.group({
-        //     username: ['admin', [Validators.required]],
-        //     password: ['Namso1234567!', [Validators.required]]
-        // });
+
     }
 
 
     onSubmit() {
-        // console.log(this.username, this.password)
+        const formValue: UserInfo = this.signInForm.value;
+
         const info: UserInfo = {
-            username: this.username,
-            password: this.password
+            username: formValue.username,
+            password: formValue.password
         }
-        this._signInService.signIn(info)
-            .pipe()
-            .subscribe((token: any) => {
-                console.log(token)
-            })
-    }
 
-    onChangeName(e: any) {
-        this.username = e.target.value;
+        console.log(info)
 
-    }
-    onChangePassword(e: any) {
-        this.password = e.target.value;
+        // this._signInService.signIn(info)
+        //     .pipe()
+        //     .subscribe((token: any) => {
+        //         console.log(token)
+        //     })
     }
 }

@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routing';
+import { MainLayoutModule } from './modules/main-layout/main-layout.module';
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { appRoutes } from './app.routing';
         CommonModule,
         // define route for app module
         RouterModule.forRoot(appRoutes),
+
+        MainLayoutModule,
 
         FormsModule,
         ReactiveFormsModule,
