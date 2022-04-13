@@ -7,7 +7,7 @@ export class UrlDefine {
 
     static api = {
         auth: {
-            signIn: 'swagger/login'
+            signIn: 'api/UserControllers/login'
         }
     }
 }
