@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SignInService } from './sign-in.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class SignInComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private _signInService: SignInService,
+        private _router: Router,
     ) {
         this.signInForm = this._formBuilder.group({
             username: ['admin', [Validators.required]],
@@ -23,24 +24,24 @@ export class SignInComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
     }
 
-
     onSubmit() {
-        const formValue: UserInfo = this.signInForm.value;
+        const formValue = this.signInForm.value;
 
         const info: UserInfo = {
-            username: formValue.username,
+            usename: formValue.username,
             password: formValue.password
         }
 
         console.log(info)
 
-        // this._signInService.signIn(info)
-        //     .pipe()
-        //     .subscribe((token: any) => {
-        //         console.log(token)
-        //     })
+        this._signInService.signIn(info)
+            .pipe()
+            .subscribe((token: AuthResponse) => {
+                // default success
+                console.log(token.accessToken)
+                this._router.navigate(['overview'])
+            })
     }
 }

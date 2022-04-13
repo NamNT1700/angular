@@ -1,4 +1,8 @@
 declare interface UserInfo {
-    username: string,
+    usename: string,
     password: string,
+}
+
+declare interface AuthResponse {
+    accessToken: string;
 }
